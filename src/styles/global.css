@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Replace default focus styles */
+  a:focus,
+  button:focus,
+  input:focus,
+  textarea:focus,
+  select:focus,
+  [tabindex]:focus {
+    @apply ring outline-none;
+  }
+
+  /* See https://piccalil.li/quick-tip/a-safer-way-to-vertically-fill-the-viewport/ for details */
+  html,
+  body,
+  #___gatsby,
+  #gatsby-focus-wrapper {
+    height: -webkit-fill-available;
+  }
+
+  /* Use Smooth Scroll for jump links */
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+
+  [id] {
+    scroll-margin-top: 7.5rem;
+  }
+  @screen sm {
+    [id] {
+      scroll-margin-top: 8rem;
+    }
+  }
+
+  /* Turn off animations for people who have the prefers-reduced-motion query enabled */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

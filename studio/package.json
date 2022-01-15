@@ -1,0 +1,66 @@
+{
+  "name": "www.dezu.ph",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "package.json",
+  "author": "JD Manabat <manabat.johnder@gmail.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "sanity build",
+    "deploy": "npm run deploy:studio && npm run deploy:graphql",
+    "deploy:graphql": "sanity graphql deploy --playground",
+    "deploy:studio": "sanity deploy",
+    "dev": "sanity start",
+    "eslint": "eslint --color --ext .js,.json,.jsx,.ts,.tsx .",
+    "eslint:fix": "npm run eslint -- --fix",
+    "format": "prettier . --write --ignore-unknown"
+  },
+  "dependencies": {
+    "@sanity/base": "^2.10.5",
+    "@sanity/components": "^2.2.6",
+    "@sanity/core": "^2.10.5",
+    "@sanity/dashboard": "^2.10.5",
+    "@sanity/default-layout": "^2.10.5",
+    "@sanity/default-login": "^2.10.5",
+    "@sanity/desk-tool": "^2.10.5",
+    "@sanity/image-url": "^1.0.1",
+    "@sanity/vision": "^2.10.5",
+    "classnames": "^2.3.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
+    "sanity-plugin-dashboard-widget-document-list": "^0.0.13",
+    "sanity-plugin-note-field": "^1.1.1",
+    "styled-components": "^5.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-adjunct": "^4.11.1",
+    "eslint-config-auto": "^0.7.1",
+    "prettier": "^2.3.0"
+  },
+  "prettier": {
+    "endOfLine": "lf",
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "auto"
+    ],
+    "rules": {
+      "eslint-comments/disable-enable-pair": 0,
+      "no-underscore-dangle": 0,
+      "react/forbid-prop-types": 0,
+      "react/jsx-filename-extension": 0,
+      "react/require-default-props": 0
+    }
+  }
+}
