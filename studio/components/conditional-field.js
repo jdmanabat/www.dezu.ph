@@ -92,7 +92,7 @@ class ConditionalFields extends React.PureComponent {
         {type.fields.map((field, i) => (
           // Delegate to the generic FormBuilderInput. It will resolve and insert the actual input component
           // for the given field type
-          <div className={fieldStyle.root} key={i} style={{ marginBottom: -1 }}>
+          <div key={i} style={{ marginBottom: -1 }}>
             <FormBuilderInput
               level={level + 1}
               ref={i === 0 ? this.firstFieldInput : null}

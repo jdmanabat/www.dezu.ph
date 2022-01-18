@@ -9,64 +9,87 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#52BBAB',
+          DEFAULT: '#CB2026',
         },
         secondary: {
           DEFAULT: '#fced00',
         },
         dark: {
-          DEFAULT: '#272525',
+          DEFAULT: '#171717',
+          light: '#888888',
         },
         light: {
           DEFAULT: '#ffffff',
         },
       },
       fontFamily: {
-        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+        sans: ['Satoshi', ...defaultTheme.fontFamily.sans],
       },
-      typography: (theme) => ({
-        DEFAULT: {
-          css: {
-            'h1, h2, h3, h4': {
-              fontWeight: theme('fontWeight.semibold'),
-            },
-            h2: {
-              fontSize: theme('fontSize.4xl'),
-              lineHeight: theme('lineHeight.10'),
-              marginBottom: theme('margin.4'),
+      typography: (theme) => {
+        return {
+          DEFAULT: {
+            css: {
+              fontSize: '1.125rem',
+              'h2, h3, h4,': {
+                fontWeight: theme('fontWeight.bold'),
+                marginBottom: 0,
+                color: 'inherit',
+              },
+              'h3, h4,': {
+                lineHeight: theme('lineHeight.9'),
+              },
+              'h1, h2, h3, h4, h5, h6, p': {
+                marginTop: 0,
+              },
+              h2: {
+                fontSize: '6rem',
+              },
+              h3: {
+                fontSize: '1.875rem',
+              },
+              h4: {
+                fontSize: '1.5rem',
+              },
             },
           },
-        },
-        dark: {
-          css: {
-            color: theme('colors.light.DEFAULT'),
-            a: {
+          dark: {
+            css: {
               color: theme('colors.light.DEFAULT'),
-              '&:hover': {
+              a: {
+                color: theme('colors.light.DEFAULT'),
+                '&:hover': {
+                  color: theme('colors.light.DEFAULT'),
+                },
+              },
+              'h1, h2, h3, h4': {
                 color: theme('colors.light.DEFAULT'),
               },
-            },
-            'h1, h2, h3, h4': {
-              color: theme('colors.light.DEFAULT'),
-            },
-            ol: {
-              li: {
-                '&:before': { color: theme('colors.light.DEFAULT') },
+              ol: {
+                li: {
+                  '&:before': { color: theme('colors.light.DEFAULT') },
+                },
               },
-            },
-            ul: {
-              li: {
-                '&:before': { backgroundColor: theme('colors.light.DEFAULT') },
+              ul: {
+                li: {
+                  '&:before': {
+                    backgroundColor: theme('colors.light.DEFAULT'),
+                  },
+                },
               },
+              strong: { color: theme('colors.light.DEFAULT') },
             },
-            strong: { color: theme('colors.light.DEFAULT') },
           },
-        },
-      }),
+        };
+      },
+      aspectRatio: {
+        0: '0',
+      },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      aspectRatio: ['responsive'],
+    },
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),

@@ -21,7 +21,7 @@ const SanityHeadingWithCtaParts = graphql`
     }
     heading {
       id: _key
-      isBold
+      isUnderlined
       text
     }
   }

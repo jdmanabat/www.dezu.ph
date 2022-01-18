@@ -39,35 +39,68 @@ interface ServicesGridProps {
 
 function ServicesGrid({ servicesGrid }: ServicesGridProps): JSX.Element {
   return (
-    <div className={classNames(BG_COLOUR_MAP[servicesGrid.colourScheme])}>
-      <div className="w-full px-4 py-12 mx-auto max-w-prose lg:max-w-screen-2xl sm:px-6 lg:px-8 lg:py-24">
+    <div
+      className={classNames(
+        BG_COLOUR_MAP[servicesGrid.colourScheme],
+        servicesGrid.backgroundImage?.asset
+          ? 'relative md:aspect-w-16 md:aspect-h-9 overflow-hidden'
+          : ''
+      )}
+    >
+      {servicesGrid.backgroundImage?.asset ? (
+        <>
+          <div
+            className={classNames(
+              'absolute inset-0 flex md:pointer-events-none'
+            )}
+          >
+            <GatsbyImage
+              image={servicesGrid.backgroundImage.asset.gatsbyImageData}
+              alt={servicesGrid.backgroundImage.alt || ''}
+              className="flex-1"
+            />
+          </div>
+          <div className="absolute inset-0 flex bg-opacity-60 bg-dark" />
+        </>
+      ) : null}
+      <div className="relative flex flex-col justify-center w-full h-full px-4 py-12 sm:px-6 lg:px-24 lg:py-24">
+        <p
+          className={classNames(
+            TEXT_COLOUR_MAP[servicesGrid.colourScheme],
+            'text-lg font-semibold text-center mx-auto max-w-prose lg:max-w-4xl mb-2'
+          )}
+        >
+          {servicesGrid.subtitle}
+        </p>
         <h2
           className={classNames(
             TEXT_COLOUR_MAP[servicesGrid.colourScheme],
-            'text-4xl font-semibold text-center'
+            'text-4xl font-semibold text-center mx-auto max-w-prose lg:max-w-4xl'
           )}
         >
           {servicesGrid.title}
         </h2>
-        <ul className="flex flex-wrap justify-center -mx-4 -mt-4">
-          {servicesGrid.services.map((service) =>
-            servicesGrid.layout === 'large' ? (
-              <ServiceLargeLayout
-                key={service.id}
-                service={service}
-                colourScheme={servicesGrid.colourScheme}
-                numberOfServices={servicesGrid.services.length}
-              />
-            ) : (
-              <ServiceSmallLayout
-                key={service.id}
-                service={service}
-                colourScheme={servicesGrid.colourScheme}
-                numberOfServices={servicesGrid.services.length}
-              />
-            )
-          )}
-        </ul>
+        <div className="w-full mx-auto max-w-prose lg:max-w-6xl">
+          <ul className="flex flex-wrap justify-center mt-10 -mx-4 ">
+            {servicesGrid.services.map((service) =>
+              servicesGrid.layout === 'large' ? (
+                <ServiceLargeLayout
+                  key={service.id}
+                  service={service}
+                  colourScheme={servicesGrid.colourScheme}
+                  numberOfServices={servicesGrid.services.length}
+                />
+              ) : (
+                <ServiceSmallLayout
+                  key={service.id}
+                  service={service}
+                  colourScheme={servicesGrid.colourScheme}
+                  numberOfServices={servicesGrid.services.length}
+                />
+              )
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   );
@@ -85,20 +118,25 @@ function ServiceLargeLayout({
   numberOfServices,
 }: ServiceLargeLayoutProps): JSX.Element {
   let href;
-  if (service.page._type === 'homePage') href = '/';
-  if (service.page._type === 'blogPage') href = '/blog/';
-  if (service.page._type === 'page') href = `/${service.page.slug.current}/`;
+  if (service.page?._type === 'homePage') href = '/';
+  if (service.page?._type === 'blogPage') href = '/blog/';
+  if (service.page?._type === 'page') href = `/${service.page.slug.current}/`;
+  const imageClassnames =
+    service.figure?.customRatio === 0
+      ? 'flex justify-center'
+      : 'absolute inset-0 flex w-full h-full';
+
   return (
     <li
       className={classNames(
-        'p-4 mt-12 w-full max-w-lg transition transform-gpu duration-150 ease-in-out rounded sm:w-1/2 hover:shadow-xl hover:-translate-y-px focus-within:shadow-xl focus-within:-translate-y-px',
+        'p-4 mt-12 w-full max-w-lg sm:w-1/2',
         LARGE_SERVICE_CARDS_MAP[numberOfServices]
       )}
     >
       <div
         className="relative overflow-hidden"
         style={{
-          paddingBottom: `${100 / service.figure.customRatio}%`,
+          paddingBottom: `${100 / service.figure?.customRatio}%`,
         }}
       >
         {service.figure?.asset ? (
@@ -106,25 +144,35 @@ function ServiceLargeLayout({
             aria-hidden
             tabIndex={-1}
             to={href}
-            className="absolute inset-0 flex w-full h-full"
+            className={classNames(imageClassnames)}
           >
             <GatsbyImage
-              image={service.figure.asset.gatsbyImageData}
-              alt={service.figure.alt ?? ''}
-              className="flex-1"
+              image={service.figure?.asset.gatsbyImageData}
+              alt={service.figure?.alt ?? ''}
+              className={
+                service.figure.customRatio === 0 ? 'w-20 h-auto' : 'flex-1'
+              }
             />
           </Link>
         ) : null}
       </div>
-      <div>
+      <div className="mt-4">
         <h3
           className={classNames(
             TEXT_COLOUR_MAP[colourScheme],
-            'mt-4 text-2xl font-semibold'
+            'text-4xl font-semibold text-center'
           )}
         >
           {service.title}
         </h3>
+        <p
+          className={classNames(
+            TEXT_COLOUR_MAP[colourScheme],
+            'text-xl font-semibold text-center mt-2'
+          )}
+        >
+          {service.subtitle}
+        </p>
         {service._rawDescription ? (
           <BlockContent
             renderContainerOnSingleChild
@@ -136,19 +184,21 @@ function ServiceLargeLayout({
             )}
           />
         ) : null}
-        <p>
-          <Link
-            to={href}
-            aria-label={`Read more about ${service.title}`}
-            className={classNames(
-              ACCENT_COLOUR_MAP[colourScheme],
-              'inline-flex items-center mt-4 space-x-1 uppercase font-bold'
-            )}
-          >
-            <span>Read more</span>
-            <ChevronRightIcon className="w-3 h-3" />
-          </Link>
-        </p>
+        {href && (
+          <p>
+            <Link
+              to={href}
+              aria-label={`Read more about ${service.title}`}
+              className={classNames(
+                ACCENT_COLOUR_MAP[colourScheme],
+                'inline-flex items-center mt-4 space-x-1 font-bold'
+              )}
+            >
+              <span>Read more</span>
+              <ChevronRightIcon className="w-3 h-3" />
+            </Link>
+          </p>
+        )}
       </div>
     </li>
   );
@@ -179,7 +229,7 @@ function ServiceSmallLayout({
       <Link
         to={href}
         aria-label={service.title}
-        className="block p-4 transition duration-150 ease-in-out rounded group hover:shadow-xl hover:-translate-y-px focus:shadow-xl focus:-translate-y-px transform-gpu"
+        className="block p-4 rounded group"
       >
         <div className="relative overflow-hidden aspect-w-1 aspect-h-1">
           {service.figure?.asset ? (

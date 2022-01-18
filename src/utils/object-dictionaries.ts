@@ -7,7 +7,7 @@ export const BG_COLOUR_MAP = {
 };
 
 export const TEXT_COLOUR_MAP = {
-  light: 'text-dark',
+  light: 'text-dark-light',
   primary: 'text-light',
   secondary: 'text-dark',
   dark: 'text-light',

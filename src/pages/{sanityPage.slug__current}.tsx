@@ -46,17 +46,14 @@ export const query = graphql`
         ... on SanityServicesGrid {
           ...SanityServicesGridParts
         }
-        ... on SanityFrequentlyAskedQuestions {
-          ...SanityFrequentlyAskedQuestionsParts
+        ... on SanityList {
+          ...SanityListParts
         }
         ... on SanityContactForm {
           ...SanityContactFormParts
         }
         ... on SanityHeadingWithCta {
           ...SanityHeadingWithCtaParts
-        }
-        ... on SanityGoogleMap {
-          ...SanityGoogleMapParts
         }
       }
       seo {
@@ -74,4 +71,10 @@ export const query = graphql`
   }
 `;
 
+// ... on SanityFrequentlyAskedQuestions {
+//   ...SanityFrequentlyAskedQuestionsParts
+// }
+// ... on SanityGoogleMap {
+//   ...SanityGoogleMapParts
+// }
 export default PageTemplate;

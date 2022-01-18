@@ -61,6 +61,6 @@ export interface ISanityPost extends ISanityPostPreview {
 
 export interface IHeading {
   id: string;
-  isBold?: boolean;
+  isUnderlined?: boolean;
   text: string;
 }

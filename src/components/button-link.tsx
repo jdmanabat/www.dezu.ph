@@ -29,8 +29,8 @@ function ButtonLink({
   colourScheme = 'light',
 }: ButtonLinkProps): JSX.Element | null {
   const buttonStyles =
-    'inline-block border-2 border-primary uppercase font-semibold tracking-wider';
-  const largeStyles = 'px-6 py-2 text-base';
+    'inline-block border-2 border-primary font-semibold tracking-wider rounded ';
+  const largeStyles = 'px-7 py-2 text-lg';
   const smallStyles = 'px-4 py-1 text-sm';
   const styles = classNames(
     link.isButton && buttonStyles,

@@ -7,10 +7,20 @@ export default {
   icon: FiStar,
   fields: [
     {
+      title: 'Subheading',
+      name: 'subheading',
+      type: 'string',
+    },
+    {
       title: 'Heading',
       name: 'heading',
       type: 'array',
       of: [{ type: 'headingLine' }],
+    },
+    {
+      title: 'Body',
+      name: 'body',
+      type: 'string',
     },
     {
       title: 'Calls to Action',
@@ -23,8 +33,8 @@ export default {
       type: 'figure',
     },
     {
-      title: 'Small hero',
-      name: 'isSmall',
+      title: 'Align center?',
+      name: 'isCentered',
       type: 'boolean',
     },
   ],

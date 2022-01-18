@@ -8,7 +8,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://dezu.netlify.com/',
+    siteUrl: 'https://dezu.netlify.app/',
   },
   flags: {
     DEV_SSR: true,

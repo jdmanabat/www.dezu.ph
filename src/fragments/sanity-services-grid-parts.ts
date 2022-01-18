@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
-
-import type { TColourScheme, TLayout } from '../types';
+import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import type { TColourScheme, TLayout, TCustomRatio } from '../types';
 import type { ISanityFigure } from './sanity-figure-parts';
 
 interface IPage {
@@ -20,12 +20,27 @@ interface IBlog {
 
 type TPage = IPage | IHome | IBlog;
 
+interface IBackgroundImage {
+  alt?: string;
+  asset: {
+    gatsbyImageData: IGatsbyImageData;
+  };
+  customRatio: TCustomRatio;
+  hotspot: {
+    height: number;
+    width: number;
+    x: number;
+    y: number;
+  };
+}
+
 interface ISanityService {
   id: string;
   _rawDescription: [];
   figure: ISanityFigure;
   page: TPage;
   title: string;
+  subtitle: string;
 }
 
 interface ISanityServicesGrid {
@@ -34,7 +49,9 @@ interface ISanityServicesGrid {
   colourScheme: TColourScheme;
   layout: TLayout;
   services: ISanityService[];
-  title: 'Our Services';
+  title: 'Our service';
+  subtitle: string;
+  backgroundImage: IBackgroundImage;
 }
 
 const SanityServicesGridParts = graphql`
@@ -53,8 +70,23 @@ const SanityServicesGridParts = graphql`
         ...SanityPageSlugParts
       }
       title
+      subtitle
     }
     title
+    subtitle
+    backgroundImage {
+      alt
+      asset {
+        gatsbyImageData(width: 1920)
+      }
+      customRatio
+      hotspot {
+        height
+        width
+        x
+        y
+      }
+    }
   }
 `;
 

@@ -6,6 +6,7 @@ import type { ISanityFaqs } from '../fragments/sanity-frequently-asked-questions
 import type { ISanityGoogleMap } from '../fragments/sanity-google-map-parts';
 import type { ISanityHeadingWithCta } from '../fragments/sanity-heading-with-cta-parts';
 import type { ISanityHero } from '../fragments/sanity-hero-parts';
+import { ISanityList } from '../fragments/sanity-list-parts';
 import type { ISanityServicesGrid } from '../fragments/sanity-services-grid-parts';
 import { ContactSection } from './modules/contact-section';
 import { CopyWithImage } from './modules/copy-with-image';
@@ -13,6 +14,7 @@ import { FAQs } from './modules/faqs';
 import { GoogleMap } from './modules/google-map';
 import { HeadingWithCta } from './modules/heading-with-cta';
 import { Hero } from './modules/hero';
+import { List } from './modules/list';
 import { ServicesGrid } from './modules/services-grid';
 
 type TSanityModule =
@@ -20,9 +22,10 @@ type TSanityModule =
   | ISanityCopyWithImage
   | ISanityServicesGrid
   | ISanityHeadingWithCta
-  | ISanityFaqs
   | ISanityContactForm
-  | ISanityGoogleMap;
+  | ISanityList;
+// | ISanityGoogleMap
+// | ISanityFaqs;
 
 interface SanityModulesProps {
   modules: TSanityModule[];
@@ -57,14 +60,17 @@ function SanityModule({ module }: SanityModuleProps): JSX.Element | null {
     case 'headingWithCta':
       return <HeadingWithCta headingWithCta={module} />;
 
-    case 'frequentlyAskedQuestions':
-      return <FAQs frequentlyAskedQuestions={module} />;
+    // case 'frequentlyAskedQuestions':
+    //   return <FAQs frequentlyAskedQuestions={module} />;
 
     case 'contactForm':
       return <ContactSection contactSection={module} />;
 
-    case 'googleMap':
-      return <GoogleMap googleMap={module} />;
+    // case 'googleMap':
+    //   return <GoogleMap googleMap={module} />;
+
+    case 'list':
+      return <List list={module} />;
 
     default:
       return null;

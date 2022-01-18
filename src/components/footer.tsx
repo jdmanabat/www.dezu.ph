@@ -18,24 +18,26 @@ function Footer(): JSX.Element {
   const { items } = useSanityMenu();
   const { siteTitle } = useSanitySEOSettings();
   return (
-    <footer className="bg-dark" aria-labelledby="footerHeading">
+    <footer className="bg-light" aria-labelledby="footerHeading">
       <h2 id="footerHeading" className="sr-only">
         Footer
       </h2>
-      <div className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:py-16 lg:px-8">
+      <div className="px-4 py-12 mx-auto sm:px-6 lg:py-16 lg:px-24">
         <div className="pb-8 xl:grid xl:grid-cols-5 xl:gap-8">
           <div className="grid grid-cols-2 gap-8 xl:col-span-4">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <Link to="/" className="inline-block p-2 -m-2">
                   <span className="sr-only">{siteTitle}</span>
-                  {/* <Logo aria-hidden className="w-auto h-24" /> */}
-                  <StaticImage
-                    src="../images/footer.jpg"
-                    alt=""
-                    className="flex-1"
-                  />
+                  <Logo aria-hidden className="w-auto h-12 text-primary" />
                 </Link>
+                <p className="mt-2">© Copyright 2021 | Dezu Corporation</p>
+                <p className="mt-16">
+                  Dezu is a high tech solutions provider with advanced
+                  engineering methods in high pressure waterjet technology that
+                  optimize turnaround shutdowns for the oil and gas, energy, and
+                  industrial sectors.
+                </p>
               </div>
               <div>
                 <ul className="space-y-4">
@@ -57,22 +59,12 @@ function Footer(): JSX.Element {
                 </ul>
               </div>
             </div>
-            <div className="md:grid md:gap-8">
+            {/* <div className="md:grid md:gap-8">
               <div className="mt-12 md:mt-0">
                 <ContactInfo colourScheme="dark" />
               </div>
-            </div>
+            </div> */}
           </div>
-        </div>
-        <div className="pt-8 mt-8 border-t border-dark md:flex md:items-center md:justify-between">
-          <p className="mt-8 text-base text-light md:mt-0">
-            <a
-              href="https://www.thewebsitefactory.com.au/"
-              className="underline"
-            >
-              Website by The Website Factory.
-            </a>
-          </p>
         </div>
       </div>
     </footer>

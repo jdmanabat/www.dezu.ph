@@ -24,13 +24,10 @@ function Nav(): JSX.Element {
   const { siteTitle } = useSanitySEOSettings();
   const settings = useSanityGeneralSettings();
   return (
-    <Popover
-      as="header"
-      className="sticky inset-x-0 top-0 z-20 text-dark bg-light"
-    >
+    <Popover as="header" className="absolute inset-x-0 top-0 z-20">
       {({ open }) => (
         <>
-          <div className="bg-primary text-light">
+          {/* <div className="bg-primary text-light">
             <div className="flex items-center justify-end px-4 py-1 mx-auto space-x-4 font-semibold max-w-screen-2xl sm:px-6 lg:px-8">
               <a href={`tel:${settings.phoneNumber}`}>{settings.phoneNumber}</a>
               <ul className="inline-flex items-center space-x-2">
@@ -53,19 +50,16 @@ function Nav(): JSX.Element {
                 })}
               </ul>
             </div>
-          </div>
-          <div className="relative shadow bg-dark">
-            <div className="flex items-center justify-between px-4 py-5 mx-auto bg-dark max-w-screen-2xl sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10">
+          </div> */}
+          <div className="relative">
+            <div className="flex items-center justify-between px-4 py-5 mx-auto sm:px-6 sm:py-12 lg:px-24 md:justify-start md:space-x-10">
               <div>
                 <Link
                   to="/"
                   className="flex p-2 -m-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
                 >
                   <span className="sr-only">{siteTitle}</span>
-                  <Logo
-                    aria-hidden
-                    className="w-auto h-12 sm:h-16 text-primary"
-                  />
+                  <Logo aria-hidden className="w-auto h-5 text-white sm:h-6" />
                 </Link>
               </div>
               <div className="-my-2 -mr-2 md:hidden">
@@ -112,7 +106,7 @@ function NavLink({ item }: NavLinkProps): JSX.Element {
       <a
         key={item.id}
         href={item.url}
-        className="px-2 -mx-2 text-base font-medium text-white hover:underline focus:outline-none focus:ring-2 focus:ring-offset-dark focus:ring-offset-2 focus:ring-primary"
+        className="px-2 -mx-2 text-xl font-medium text-white hover:underline focus:outline-none focus:ring-2 focus:ring-offset-dark focus:ring-offset-2 focus:ring-primary"
       >
         {item.title}
       </a>
@@ -137,7 +131,7 @@ function NavPage({ item }: NavPageProps): JSX.Element {
         to={href}
         className={classNames(
           pathname === href ? 'text-primary' : 'text-light',
-          'px-2 -mx-2 text-base font-medium rounded-md hover:underline focus:outline-none focus:ring-2 focus:ring-offset-dark focus:ring-offset-2 focus:ring-primary'
+          'px-2 -mx-2 text-xl font-medium rounded-md focus:outline-none'
         )}
       >
         {item.title}
@@ -157,12 +151,12 @@ function NavDropdown({ item }: NavDropdownProps): JSX.Element {
         <>
           <Popover.Button
             className={classNames(
-              open ? 'text-primary' : 'text-dark',
-              'inline-flex items-center px-2 -mx-2 text-base font-medium rounded-md group hover:text-primary focus:outline-none focus:ring-2 focus:ring-offset-dark focus:ring-offset-2 focus:ring-primary'
+              open ? 'text-primary' : 'text-light',
+              'inline-flex items-center px-2 -mx-2 text-xl font-medium rounded-md group focus:outline-none '
             )}
           >
             <span>{item.title}</span>
-            <ChevronDownIcon className="w-5 h-5 ml-2" aria-hidden />
+            {/* <ChevronDownIcon className="w-5 h-5 ml-2" aria-hidden /> */}
           </Popover.Button>
 
           <Transition
@@ -177,7 +171,7 @@ function NavDropdown({ item }: NavDropdownProps): JSX.Element {
           >
             <Popover.Panel
               static
-              className="absolute z-10 w-screen max-w-xs px-2 mt-3 -translate-x-1/2 transform-gpu left-1/2 sm:px-0"
+              className="absolute left-0 z-10 w-screen max-w-xs px-2 mt-3 -translate-x-1/2 transform-gpu sm:px-0"
             >
               <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-dark ring-opacity-5">
                 <div className="relative grid gap-6 p-8 bg-light sm:gap-8">
@@ -211,7 +205,7 @@ function NavDropdownLink({ item }: NavLinkProps): JSX.Element {
       href={item.url}
       className="block p-3 -m-3 transition duration-150 ease-in-out rounded-md hover:bg-gray-50"
     >
-      <p className="text-base font-medium text-gray-900">{item.title}</p>
+      <p className="text-xl font-medium text-gray-900">{item.title}</p>
     </a>
   );
 }
@@ -227,7 +221,7 @@ function NavDropdownPage({ item }: NavDropdownPageProps): JSX.Element {
       to={`/${item.page.slug.current}/`}
       className="block p-3 -m-3 transition duration-150 ease-in-out rounded-md hover:bg-gray-50"
     >
-      <p className="text-base font-medium text-gray-900">{item.title}</p>
+      <p className="text-xl font-medium text-gray-900">{item.title}</p>
     </Link>
   );
 }

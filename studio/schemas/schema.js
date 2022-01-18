@@ -29,6 +29,7 @@ import hero from './modules/hero';
 import modules from './modules/modules';
 import headingWithCta from './modules/heading-with-cta';
 import servicesGrid from './modules/services-grid';
+import list from './modules/list';
 // Object types
 import address from './objects/address';
 import blogPostImage from './objects/blog-post-image';
@@ -84,6 +85,7 @@ export default createSchema({
     modules,
     servicesGrid,
     headingWithCta,
+    list,
     // Object types
     address,
     blogPostImage,

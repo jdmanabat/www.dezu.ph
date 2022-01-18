@@ -10,14 +10,14 @@ interface HeroProps {
 }
 
 function Hero({ hero }: HeroProps): JSX.Element {
-  const maxHeight = hero.isSmall ? 'max-h-[24rem]' : 'max-h-[36rem]';
+  // const maxHeight = hero.isSmall ? 'max-h-[24rem]' : 'max-h-[36rem]';
+  const isCentered = hero.isCentered ? 'items-center text-center' : '';
   return (
-    <div className={classNames(maxHeight, 'relative overflow-hidden')}>
+    <div className={classNames('relative overflow-hidden')}>
       <div className="md:aspect-w-16 md:aspect-h-9">
         {hero.backgroundImage?.asset ? (
           <div
             className={classNames(
-              maxHeight,
               'absolute inset-0 flex md:inset-auto md:pointer-events-none'
             )}
           >
@@ -30,37 +30,47 @@ function Hero({ hero }: HeroProps): JSX.Element {
         ) : null}
         <div
           className={classNames(
-            maxHeight,
-            'relative flex flex-col items-center justify-center py-12 text-center bg-opacity-25 bg-dark px-4 sm:px-6 lg:px-8'
+            'flex items-center relative bg-opacity-60 bg-dark min-h-[600px]'
           )}
         >
-          <h1 className="max-w-4xl font-semibold text-light">
-            {hero.heading.map((line, index) => (
-              <React.Fragment key={line.id}>
-                <span
-                  className={`text-5xl inline-block leading-tight ${
-                    line.isBold ? 'uppercase' : ''
-                  }`}
-                >
-                  {line.text}
-                </span>
-                {index !== hero.heading.length - 1 ? <br /> : null}
-              </React.Fragment>
-            ))}
-          </h1>
-          <p className="mt-2">
-            {hero.ctas
-              ? hero.ctas.map((cta) => (
-                  <ButtonLink
-                    key={cta.id}
-                    link={cta}
-                    colourScheme={
-                      cta.styles?.style === 'is-outline' ? 'dark' : 'light'
-                    }
-                  />
-                ))
-              : null}
-          </p>
+          <div
+            className={classNames(
+              isCentered,
+              'flex flex-col justify-center w-full px-4 py-12 sm:px-6 lg:px-24 relative mx-auto h-full'
+            )}
+          >
+            {hero.subheading && (
+              <p className="max-w-2xl mb-5 text-lg text-light">
+                {hero.subheading}
+              </p>
+            )}
+            <h1 className="max-w-2xl font-semibold text-light">
+              {hero.heading.map((line, index) => (
+                <React.Fragment key={line.id}>
+                  <span className={`text-4xl inline-block leading-tight`}>
+                    {line.text}
+                  </span>
+                  {index !== hero.heading.length - 1 ? <br /> : null}
+                </React.Fragment>
+              ))}
+            </h1>
+            {hero.body && (
+              <p className="max-w-2xl mt-5 text-xl text-light">{hero.body}</p>
+            )}
+            <p className="mt-2 ">
+              {hero.ctas
+                ? hero.ctas.map((cta) => (
+                    <ButtonLink
+                      key={cta.id}
+                      link={cta}
+                      colourScheme={
+                        cta.styles?.style === 'is-outline' ? 'dark' : 'light'
+                      }
+                    />
+                  ))
+                : null}
+            </p>
+          </div>
         </div>
       </div>
     </div>

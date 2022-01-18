@@ -12,6 +12,11 @@ export default {
       type: 'richText',
     },
     {
+      title: 'Background Image',
+      name: 'backgroundImage',
+      type: 'figure',
+    },
+    {
       title: 'Call to Action',
       name: 'ctas',
       type: 'ctas',

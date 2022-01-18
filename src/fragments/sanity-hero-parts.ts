@@ -25,14 +25,15 @@ interface ISanityHero {
   ctas?: TCta[];
   heading: IHeading[];
   layout: 'small' | 'large';
-  isSmall: boolean;
+  subheading: string;
+  body: string;
+  isCentered?: boolean;
 }
 
 const SanityHeroParts = graphql`
   fragment SanityHeroParts on SanityHero {
     id: _key
     _type
-    isSmall
     backgroundImage {
       alt
       asset {
@@ -49,11 +50,14 @@ const SanityHeroParts = graphql`
     ctas {
       ...SanityCtaParts
     }
+    subheading
     heading {
       id: _key
-      isBold
+      isUnderlined
       text
     }
+    body
+    isCentered
   }
 `;
 

@@ -12,8 +12,8 @@ export default {
       type: 'string',
     },
     {
-      title: 'Style as Bold?',
-      name: 'isBold',
+      title: 'Underlined?',
+      name: 'isUnderlined',
       type: 'boolean',
     },
   ],

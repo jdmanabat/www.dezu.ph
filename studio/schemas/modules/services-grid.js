@@ -1,4 +1,4 @@
-import { FiGrid as icon } from 'react-icons/fi';
+import { BsThreeDots as icon } from 'react-icons/bs';
 
 export default {
   title: 'Services Grid',
@@ -11,6 +11,11 @@ export default {
       name: 'title',
       type: 'string',
       validation: (Rule) => Rule.required(),
+    },
+    {
+      title: 'Subtitle',
+      name: 'subtitle',
+      type: 'string',
     },
     {
       title: 'Services',
@@ -30,6 +35,11 @@ export default {
       name: 'colourScheme',
       type: 'colourScheme',
       validation: (Rule) => Rule.required(),
+    },
+    {
+      title: 'Background Image',
+      name: 'backgroundImage',
+      type: 'figure',
     },
   ],
 };

@@ -6,9 +6,8 @@ export default {
     { type: 'hero' },
     { type: 'copyWithImage' },
     { type: 'servicesGrid' },
-    { type: 'frequentlyAskedQuestions' },
     { type: 'contactForm' },
-    { type: 'googleMap' },
     { type: 'headingWithCta' },
+    { type: 'list' },
   ],
 };

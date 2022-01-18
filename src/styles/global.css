@@ -1,3 +1,4 @@
+@import './fonts.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +11,7 @@
   textarea:focus,
   select:focus,
   [tabindex]:focus {
-    @apply ring outline-none;
+    @apply outline-none ring;
   }
 
   /* See https://piccalil.li/quick-tip/a-safer-way-to-vertically-fill-the-viewport/ for details */

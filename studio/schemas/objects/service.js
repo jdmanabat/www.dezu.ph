@@ -12,6 +12,11 @@ export default {
       type: 'string',
     },
     {
+      title: 'Subtitle',
+      name: 'subtitle',
+      type: 'string',
+    },
+    {
       title: 'Page',
       name: 'page',
       description: 'Page you’re linking to',
@@ -22,7 +27,6 @@ export default {
       title: 'Image',
       name: 'figure',
       type: 'figure',
-      validation: (Rule) => Rule.required(),
     },
     {
       title: 'Description',
