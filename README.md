@@ -1,10 +1,1 @@
-# Sanity Template Website Factory Starter
-
-<!--
-[Create new project](https://www.sanity.io/create?template=phirannodesigns/sanity-template-website-factory-starter) -->
-
-## Manual Sets
-
-- Update `siteUrl` in `gatsby-config.js`
-- Update `src/images/favicon.png` with customers favicon (needs to be 512px × 512px)
-- In `studio/deskStructure.js` set `remoteURL`
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a4e73142-2010-4407-bb07-00bdaf89613a/deploy-status)](https://app.netlify.com/sites/condescending-brattain-8c8f59/deploys)
