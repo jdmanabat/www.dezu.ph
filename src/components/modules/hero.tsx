@@ -57,7 +57,7 @@ function Hero({ hero }: HeroProps): JSX.Element {
             {hero.body && (
               <p className="max-w-2xl mt-5 text-xl text-light">{hero.body}</p>
             )}
-            <p className="mt-2 ">
+            <p className="mt-12">
               {hero.ctas
                 ? hero.ctas.map((cta) => (
                     <ButtonLink
