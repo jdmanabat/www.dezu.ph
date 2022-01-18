@@ -106,9 +106,12 @@ interface NavPageProps {
 
 function NavPage({ item }: NavPageProps): JSX.Element {
   let href;
-  if (item.page._type === 'homePage') href = '/';
-  if (item.page._type === 'blogPage') href = '/blog/';
-  if (item.page._type === 'page') href = `/${item.page.slug.current}/`;
+  if (item._type === 'homePage') href = '/';
+  if (item._type === 'blogPage') href = '/blog/';
+  if (item._type === 'navPage') href = `/${item.page.slug.current}/`;
+
+  console.log(href);
+  console.log(item);
   return (
     <Link
       to={href}

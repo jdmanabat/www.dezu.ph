@@ -9,10 +9,16 @@ interface INavLink {
 
 interface IHome {
   _type: 'homePage';
+  slug: {
+    current: string;
+  };
 }
 
 interface IBlog {
   _type: 'blogPage';
+  slug: {
+    current: string;
+  };
 }
 
 interface IPage {
@@ -26,7 +32,7 @@ interface IPage {
 
 interface INavPage {
   id: string;
-  _type: 'navPage';
+  _type: string;
   page: IHome | IBlog | IPage;
   title: string;
 }
