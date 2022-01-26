@@ -30,9 +30,8 @@ module.exports = {
           DEFAULT: {
             css: {
               fontSize: '1.125rem',
-              'h2, h3, h4,': {
+              'h1, h2, h3, h4,': {
                 fontWeight: theme('fontWeight.bold'),
-                marginBottom: 0,
                 color: 'inherit',
               },
               'h3, h4,': {
@@ -43,6 +42,7 @@ module.exports = {
               },
               h2: {
                 fontSize: '6rem',
+                marginBottom: theme('margin.4'),
               },
               h3: {
                 fontSize: '1.875rem',

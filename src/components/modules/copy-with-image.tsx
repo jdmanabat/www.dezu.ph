@@ -27,6 +27,7 @@ function CopyWithImage({ copyWithImage }: CopyWithImageProps): JSX.Element {
         BG_COLOUR_MAP[copyWithImage.colourScheme],
         'relative'
       )}
+      id={`${copyWithImage.anchorID}`}
     >
       <div className="">
         <div className="grid items-center lg:grid-cols-5">

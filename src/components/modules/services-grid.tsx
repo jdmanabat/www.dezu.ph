@@ -150,7 +150,9 @@ function ServiceLargeLayout({
               image={service.figure?.asset.gatsbyImageData}
               alt={service.figure?.alt ?? ''}
               className={
-                service.figure.customRatio === 0 ? 'w-20 h-auto' : 'flex-1'
+                service.figure.customRatio === 0
+                  ? 'w-12 lg:w-16 h-auto'
+                  : 'flex-1'
               }
             />
           </Link>

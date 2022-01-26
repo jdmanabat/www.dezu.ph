@@ -1,14 +1,8 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 interface IAddress {
-  googleMaps: {
-    embed: string;
-    link: string;
-  };
-  postcode: string;
-  state: string;
-  streetAddress: string;
-  suburb: string;
+  address: string;
+  name: string;
 }
 
 interface IHours {
@@ -27,18 +21,20 @@ interface SocialLinks {
     | 'Spotify'
     | 'Twitter'
     | 'YouTube'
-    | 'Github';
+    | 'Github'
+    | 'LinkedIn';
   url: string;
 }
 
 interface ISanityGeneralSettings {
-  address: IAddress;
-  email: string;
-  hours: Array<IHours>;
+  addressOne: IAddress;
+  addressTwo: IAddress;
+  email: Array<string>;
   id: string;
-  phoneNumber: string;
+  phoneNumber: Array<string>;
   siteURL: string;
   socialLinks: Array<SocialLinks>;
+  bio: string;
 }
 
 interface ISanityGeneralSettingsQuery {
@@ -50,25 +46,19 @@ function useSanityGeneralSettings(): ISanityGeneralSettings {
     useStaticQuery<ISanityGeneralSettingsQuery>(graphql`
       query SanityGeneralSettingsQuery {
         sanityGeneralSettings(_id: { eq: "generalSettings" }) {
-          address {
-            googleMaps {
-              embed
-              link
-            }
-            postcode
-            state
-            streetAddress
-            suburb
+          addressOne {
+            address
+            name
+          }
+          addressTwo {
+            address
+            name
           }
           email
-          hours {
-            id: _key
-            days
-            hours
-          }
           id
           phoneNumber
           siteURL
+          bio
           socialLinks {
             id: _key
             icon

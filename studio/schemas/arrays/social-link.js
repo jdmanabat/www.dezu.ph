@@ -1,5 +1,9 @@
 import {
-  FaFacebookF, FaInstagram, FaTwitter, FaYoutube,
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+  FaLinkedinIn,
 } from 'react-icons/fa';
 
 const getIcon = (icon) => {
@@ -15,6 +19,9 @@ const getIcon = (icon) => {
 
     case 'YouTube':
       return FaYoutube;
+
+    case 'LinkedIn':
+      return FaLinkedinIn;
 
     default:
       return false;
@@ -38,6 +45,7 @@ export default {
         list: [
           { title: 'Facebook', value: 'Facebook' },
           { title: 'Instagram', value: 'Instagram' },
+          { title: 'LinkedIn', value: 'LinkedIn' },
           { title: 'Twitter', value: 'Twitter' },
           { title: 'YouTube', value: 'YouTube' },
         ],

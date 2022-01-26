@@ -8,12 +8,12 @@ interface GoogleMapProps {
 }
 
 function GoogleMap({ googleMap }: GoogleMapProps): JSX.Element | null {
-  const { address } = useSanityGeneralSettings();
+  const { addressOne } = useSanityGeneralSettings();
   if (googleMap?.showMap !== true) return null;
   return (
     <div className="relative h-0 aspect-ratio-16/9 lg:aspect-ratio-none lg:h-96">
       <iframe
-        src={address.googleMaps.embed}
+        src={addressOne.googleMaps.embed}
         frameBorder={0}
         allowFullScreen
         aria-hidden={false}

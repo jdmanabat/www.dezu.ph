@@ -11,6 +11,7 @@ interface ISanityCopyWithImage {
   id: string;
   _type: 'copyWithImage';
   colourScheme: TColourScheme;
+  anchorID?: string;
   modules: TSanityCopyWithImage[];
 }
 
@@ -19,6 +20,7 @@ const SanityCopyWithImageParts = graphql`
     id: _key
     _type
     colourScheme
+    anchorID
     modules {
       ... on SanityCopy {
         ...SanityCopyParts

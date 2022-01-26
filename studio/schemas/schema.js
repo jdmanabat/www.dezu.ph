@@ -13,6 +13,7 @@ import richText from './arrays/rich-text';
 import socialLink from './arrays/social-link';
 // Document types
 import menu from './documents/menu';
+import footerMenu from './documents/footer-menu';
 import page from './documents/page';
 import blogPage from './documents/page-blog';
 import errorPage from './documents/page-error';
@@ -76,6 +77,7 @@ export default createSchema({
     page,
     post,
     seoSettings,
+    footerMenu,
     // Modules
     contactForm,
     copyWithImage,

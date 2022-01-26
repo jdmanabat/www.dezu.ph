@@ -4,30 +4,40 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Street Address',
-      name: 'streetAddress',
+      title: 'Name',
+      name: 'name',
       type: 'string',
     },
     {
-      title: 'Suburb',
-      name: 'suburb',
-      type: 'string',
+      title: 'Address',
+      name: 'address',
+      type: 'text',
     },
-    {
-      title: 'State',
-      name: 'state',
-      type: 'string',
-    },
-    {
-      title: 'Postcode',
-      name: 'postcode',
-      type: 'string',
-    },
-    {
-      title: 'Google Maps',
-      name: 'googleMaps',
-      type: 'googleMaps',
-    },
+    // {
+    //   title: 'Street Address',
+    //   name: 'streetAddress',
+    //   type: 'string',
+    // },
+    // {
+    //   title: 'Suburb',
+    //   name: 'suburb',
+    //   type: 'string',
+    // },
+    // {
+    //   title: 'State',
+    //   name: 'state',
+    //   type: 'string',
+    // },
+    // {
+    //   title: 'Postcode',
+    //   name: 'postcode',
+    //   type: 'string',
+    // },
+    // {
+    //   title: 'Google Maps',
+    //   name: 'googleMaps',
+    //   type: 'googleMaps',
+    // },
   ],
   preview: {
     select: {

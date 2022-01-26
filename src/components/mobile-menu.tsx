@@ -20,7 +20,7 @@ interface MobileMenuProps {
 function MobileMenu({ open }: MobileMenuProps): JSX.Element {
   const { items } = useSanityMenu();
   const { siteTitle } = useSanitySEOSettings();
-  const { phoneNumber } = useSanityGeneralSettings();
+  // const { phoneNumber } = useSanityGeneralSettings();
   return (
     <Transition
       show={open}
@@ -70,14 +70,14 @@ function MobileMenu({ open }: MobileMenuProps): JSX.Element {
                 return null;
               })}
             </div>
-            <div className="px-5 mt-6">
+            {/* <div className="px-5 mt-6">
               <a
                 href={`tel:${phoneNumber}`}
                 className="block w-full px-4 py-3 font-medium text-center shadow text-light bg-primary"
               >
                 Call: {phoneNumber}
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </Popover.Panel>

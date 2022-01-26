@@ -22,7 +22,7 @@ function ContactInfo({
         <h2 className="text-2xl font-bold text-primary">{title}</h2>
       ) : null}
       <dl className={classNames('space-y-4', title && 'mt-6')}>
-        <div>
+        {/* <div>
           <dt className="inline font-bold">Phone: </dt>
           <dd className="inline">
             <a
@@ -32,8 +32,8 @@ function ContactInfo({
               {settings.phoneNumber}
             </a>
           </dd>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <dt className="inline font-bold">Email: </dt>
           <dd className="inline">
             <a
@@ -43,8 +43,8 @@ function ContactInfo({
               {settings.email}
             </a>
           </dd>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <dt className="inline font-bold">Address: </dt>
           <dd className="inline">
             <a
@@ -67,7 +67,7 @@ function ContactInfo({
               ))}
             </ul>
           </dd>
-        </div>
+        </div> */}
         <div className="inline-flex items-center space-x-2">
           <dt className="inline-flex font-bold">Follow Us: </dt>
           <dd className="inline-flex">

@@ -37,6 +37,11 @@ export default {
       name: 'isCentered',
       type: 'boolean',
     },
+    {
+      title: 'Anchor Target',
+      name: 'anchorTargetID',
+      type: 'string',
+    },
   ],
   preview: {
     select: {

@@ -19,6 +19,11 @@ export default {
       type: 'colourScheme',
       validation: (Rule) => Rule.required(),
     },
+    {
+      title: 'Anchor ID',
+      name: 'anchorID',
+      type: 'string',
+    },
   ],
   preview: {
     prepare() {

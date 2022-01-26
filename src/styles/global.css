@@ -23,7 +23,7 @@
   }
 
   /* Use Smooth Scroll for jump links */
-  html:focus-within {
+  html {
     scroll-behavior: smooth;
   }
 
