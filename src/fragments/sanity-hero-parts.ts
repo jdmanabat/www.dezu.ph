@@ -29,6 +29,7 @@ interface ISanityHero {
   body: string;
   isCentered?: boolean;
   anchorTargetID?: string;
+  isSmall?: boolean;
 }
 
 const SanityHeroParts = graphql`

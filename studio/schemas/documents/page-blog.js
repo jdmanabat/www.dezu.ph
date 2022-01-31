@@ -12,6 +12,11 @@ export default {
       type: 'hero',
     },
     {
+      title: 'Heading with CTA',
+      name: 'headingWithCta',
+      type: 'headingWithCta',
+    },
+    {
       title: 'SEO / Share Settings',
       name: 'seo',
       type: 'seo',

@@ -17,6 +17,7 @@ module.exports = {
         dark: {
           DEFAULT: '#171717',
           light: '#888888',
+          lighter: '#C2C2C2',
         },
         light: {
           DEFAULT: '#ffffff',
@@ -39,6 +40,14 @@ module.exports = {
               },
               'h1, h2, h3, h4, h5, h6, p': {
                 marginTop: 0,
+              },
+              br: {
+                height: '1rem',
+                display: 'block',
+                content: '" "',
+              },
+              p: {
+                marginBottom: theme('margin.3'),
               },
               h2: {
                 fontSize: '6rem',

@@ -3,32 +3,48 @@ import { useLocation } from '@reach/router';
 import BlockContent from '@sanity/block-content-to-react';
 import { Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { nanoid } from 'nanoid';
 import * as React from 'react';
 
 import type { ISanityPostPreview } from '../types';
 import { classNames } from '../utils/classnames';
 
-const POSTS_PER_PAGE = 12;
+const POSTS_PER_PAGE = 6;
 
 interface PostPreviewsProps {
   posts: ISanityPostPreview[];
   totalCount: number;
+  showPagination?: boolean;
+  title?: string;
 }
 
-function PostPreviews({ posts, totalCount }: PostPreviewsProps): JSX.Element {
+function PostPreviews({
+  posts,
+  totalCount,
+  showPagination = true,
+  title,
+}: PostPreviewsProps): JSX.Element {
   const pageCount = Math.ceil(totalCount / POSTS_PER_PAGE);
   const { search } = useLocation();
   const currentPage = Number(new URLSearchParams(search).get('page') ?? 1);
   const index = currentPage - 1;
   const from = index * POSTS_PER_PAGE;
   const to = from + POSTS_PER_PAGE;
+
   return (
-    <div className="relative px-4 pb-20 bg-light sm:px-6 lg:pb-28 lg:px-8">
+    <div className="relative px-4 py-24 sm:px-6 lg:px-24">
       <div className="relative mx-auto max-w-screen-2xl">
-        <div className="grid max-w-lg gap-5 mx-auto mt-12 lg:grid-cols-3 lg:max-w-none">
+        {title && (
+          <h2 className="text-3xl font-bold text-dark mb-7">{title}</h2>
+        )}
+        <div className="grid max-w-lg gap-8 mx-auto lg:grid-cols-3 lg:max-w-none">
           {posts.slice(from, to).map((post) => (
-            <div key={post.title} className="flex flex-col overflow-hidden">
-              <div className="flex flex-shrink-0 aspect-w-1 aspect-h-1">
+            <div
+              key={nanoid()}
+              className="relative flex flex-col overflow-hidden border border-solid rounded group border-dark-lighter hover:border-primary"
+            >
+              <div className="absolute top-0 left-0 z-20 w-full h-3 opacity-0 bg-primary group-hover:opacity-100" />
+              <div className="relative z-10 flex flex-shrink-0 aspect-w-16 aspect-h-10 bg-dark-lighter">
                 <Link
                   aria-hidden
                   tabIndex={-1}
@@ -44,33 +60,30 @@ function PostPreviews({ posts, totalCount }: PostPreviewsProps): JSX.Element {
                   ) : null}
                 </Link>
               </div>
-              <div className="flex flex-col justify-between flex-1 p-6">
+              <div className="flex flex-col justify-between flex-1 p-6 bg-white">
                 <div className="flex-1">
-                  <p className="text-sm font-medium">
-                    <time dateTime={post.publishedAtISO}>
-                      {post.publishedAt}
-                    </time>
-                  </p>
+                  <p className="">{post.category.name}</p>
+
                   <Link
                     to={`/blog/${post.slug.current}/`}
                     className="block mt-2"
                   >
-                    <p className="text-xl font-semibold text-gray-900">
+                    <p className="text-xl font-semibold text-gray-900 line-clamp-2">
                       {post.title}
                     </p>
                     <BlockContent
                       renderContainerOnSingleChild
                       blocks={post._rawExcerpt}
-                      className="mt-3 prose"
+                      className="mt-3 prose line-clamp-3"
                     />
                   </Link>
                 </div>
-                <p className="mt-6 text-sm font-medium text-gray-900">
+                <p className="mt-4 text-lg">
                   <Link
                     aria-hidden
                     tabIndex={-1}
                     to={`/blog/${post.slug.current}/`}
-                    className="uppercase hover:underline"
+                    className=" group-hover:border-b-2 border-primary group-hover:text-primary"
                   >
                     Read more
                   </Link>
@@ -79,7 +92,10 @@ function PostPreviews({ posts, totalCount }: PostPreviewsProps): JSX.Element {
             </div>
           ))}
         </div>
-        <Pagination currentPage={currentPage} pageCount={pageCount} />
+
+        {showPagination && (
+          <Pagination currentPage={currentPage} pageCount={pageCount} />
+        )}
       </div>
     </div>
   );

@@ -51,6 +51,9 @@ export interface ISanityPostPreview {
     current: string;
   };
   title: string;
+  category: {
+    name: string;
+  };
 }
 
 export interface ISanityPost extends ISanityPostPreview {

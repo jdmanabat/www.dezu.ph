@@ -11,15 +11,16 @@ interface HeroProps {
 }
 
 function Hero({ hero }: HeroProps): JSX.Element {
-  // const maxHeight = hero.isSmall ? 'max-h-[24rem]' : 'max-h-[36rem]';
+  const minHeight = hero.isSmall ? 'min-h-[24rem]' : 'min-h-[600px]';
+  const customRatio = hero.isSmall ? '' : 'md:aspect-w-16 md:aspect-h-9';
   const isCentered = hero.isCentered ? 'items-center text-center' : '';
   return (
-    <div className={classNames('relative overflow-hidden')}>
-      <div className="md:aspect-w-16 md:aspect-h-9">
+    <div className={classNames(minHeight, 'relative overflow-hidden')}>
+      <div className={classNames(customRatio)}>
         {hero.backgroundImage?.asset ? (
           <div
             className={classNames(
-              'absolute inset-0 flex md:inset-auto md:pointer-events-none'
+              'absolute inset-0 flex md:inset-auto md:pointer-events-none h-full'
             )}
           >
             <GatsbyImage
@@ -31,7 +32,8 @@ function Hero({ hero }: HeroProps): JSX.Element {
         ) : null}
         <div
           className={classNames(
-            'flex items-center relative bg-opacity-60 bg-dark min-h-[600px]'
+            minHeight,
+            'flex items-center relative bg-opacity-60 bg-dark'
           )}
         >
           <div
@@ -51,7 +53,7 @@ function Hero({ hero }: HeroProps): JSX.Element {
                   {hero.subheading}
                 </p>
               )}
-              <h1 className="max-w-2xl font-semibold text-light">
+              <h1 className="max-w-2xl font-bold text-light">
                 {hero.heading.map((line, index) => (
                   <React.Fragment key={line.id}>
                     <span className={`text-4xl inline-block leading-tight`}>
@@ -64,19 +66,25 @@ function Hero({ hero }: HeroProps): JSX.Element {
               {hero.body && (
                 <p className="max-w-2xl mt-5 text-xl text-light">{hero.body}</p>
               )}
-              <p className="mt-12">
-                {hero.ctas
-                  ? hero.ctas.map((cta) => (
-                      <ButtonLink
-                        key={cta.id}
-                        link={cta}
-                        colourScheme={
-                          cta.styles?.style === 'is-outline' ? 'dark' : 'light'
-                        }
-                      />
-                    ))
-                  : null}
-              </p>
+              {hero.ctas.length > 0 ? (
+                <p className="mt-12">
+                  {hero.ctas
+                    ? hero.ctas.map((cta) => (
+                        <ButtonLink
+                          key={cta.id}
+                          link={cta}
+                          colourScheme={
+                            cta.styles?.style === 'is-outline'
+                              ? 'dark'
+                              : 'light'
+                          }
+                        />
+                      ))
+                    : null}
+                </p>
+              ) : (
+                ''
+              )}
             </div>
             {hero.anchorTargetID && (
               <div className="flex justify-center">

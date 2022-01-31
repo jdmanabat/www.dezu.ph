@@ -17,6 +17,9 @@ const SanityPostParts = graphql`
         current
       }
       title
+      category {
+        name
+      }
     }
   }
 `;

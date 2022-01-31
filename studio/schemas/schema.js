@@ -21,6 +21,7 @@ import homePage from './documents/page-home';
 import post from './documents/post';
 import generalSettings from './documents/settings-general';
 import seoSettings from './documents/settings-seo';
+import catergory from './documents/catergory';
 // Modules
 import contactForm from './modules/contact-form';
 import copyWithImage from './modules/copy-with-image';
@@ -78,6 +79,7 @@ export default createSchema({
     post,
     seoSettings,
     footerMenu,
+    catergory,
     // Modules
     contactForm,
     copyWithImage,

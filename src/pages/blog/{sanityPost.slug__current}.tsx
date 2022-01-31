@@ -5,18 +5,77 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 
 import { Layout } from '../../components/layout';
+import { PostPreviews } from '../../components/post-previews';
+import { SanityModules } from '../../components/sanity-modules';
 import { SEO } from '../../components/seo';
-import type { ISanityPost } from '../../types';
+import { ISanityHeadingWithCta } from '../../fragments/sanity-heading-with-cta-parts';
+import type { ISanityPost, ISanityPostPreview } from '../../types';
 
 interface PostPageProps {
   data: {
     sanityPost: ISanityPost;
+    allSanityPost: {
+      nodes: ISanityPostPreview[];
+    };
   };
   location: HLocation;
 }
 
 function PostPage({ data, location }: PostPageProps): JSX.Element {
-  const { sanityPost } = data;
+  const {
+    sanityPost,
+    allSanityPost: { nodes },
+  } = data;
+
+  const headingWithCta: ISanityHeadingWithCta = {
+    id: '',
+    _type: 'headingWithCta',
+    colourScheme: 'primary',
+    ctas: [
+      {
+        id: '83845e8b9070',
+        _type: 'pageCta',
+        page: {
+          _type: 'page',
+          slug: {
+            current: 'contact',
+          },
+        },
+        text: 'Contact us',
+        isButton: true,
+        linkSection: '',
+        styles: {
+          isBlock: undefined,
+          isLarge: true,
+          style: 'is-outline',
+        },
+      },
+    ],
+    heading: [
+      {
+        id: '29864ba662c5',
+        isUnderlined: undefined,
+        text: 'Unlock the power of water jetting.',
+      },
+    ],
+  };
+
+  const [posts, setPosts] = React.useState(data.allSanityPost.nodes);
+
+  const [filterCategory, setFilterCategory] = React.useState(
+    sanityPost.category.name
+  );
+
+  React.useEffect(() => {
+    const filtered = data.allSanityPost.nodes.filter(
+      (post) => post.category.name === filterCategory
+    );
+
+    setPosts(filtered);
+  }, [data.allSanityPost.nodes, filterCategory]);
+
+  const slicedPosts = posts.slice(0, 3);
+
   return (
     <>
       <SEO
@@ -26,13 +85,35 @@ function PostPage({ data, location }: PostPageProps): JSX.Element {
       />
       <Layout>
         <Hero hero={sanityPost} />
-        <article>
+        <article className="max-w-4xl px-4 py-24 mx-auto sm:px-6">
+          <p className="text-lg font-medium text-primary">
+            {sanityPost.category.name}
+          </p>
+          <h1 className="mt-2 text-3xl font-semibold leading-tight md:text-5xl text-dark">
+            {sanityPost.title}
+          </h1>
+          <p className="mt-3 text-lg">
+            <time dateTime={sanityPost.publishedAtISO}>
+              {sanityPost.publishedAt}
+            </time>
+          </p>
+
           <BlockContent
             renderContainerOnSingleChild
             blocks={sanityPost._rawBody}
-            className="w-full py-12 mx-auto prose"
+            className="w-full mx-auto mt-20 prose md:mt-24 max-w-none"
           />
         </article>
+
+        {slicedPosts.length > 0 && (
+          <PostPreviews
+            posts={slicedPosts}
+            totalCount={slicedPosts.length}
+            title="Read more"
+          />
+        )}
+
+        <SanityModules modules={[headingWithCta]} />
       </Layout>
     </>
   );
@@ -44,8 +125,8 @@ interface HeroProps {
 
 function Hero({ hero }: HeroProps): JSX.Element {
   return (
-    <div className="relative max-h-[24rem]">
-      <div className="md:aspect-w-16 md:aspect-h-9">
+    <div className="relative min-h-[24rem] overflow-hidden border-b-8 border-primary">
+      <div className="h-full">
         {hero.mainImage?.asset ? (
           <div className="absolute inset-0 flex md:inset-auto max-h-[24rem]">
             <GatsbyImage
@@ -55,14 +136,7 @@ function Hero({ hero }: HeroProps): JSX.Element {
             />
           </div>
         ) : null}
-        <div className="relative flex flex-col items-center justify-center py-12 text-center bg-opacity-25 max-h-[24rem] bg-dark px-4 sm:px-6 lg:px-8">
-          <h1 className="inline-block max-w-4xl text-5xl font-semibold leading-tight uppercase text-light">
-            {hero.title}
-          </h1>
-          <p className="mt-2 text-xl font-medium uppercase text-light">
-            <time dateTime={hero.publishedAtISO}>{hero.publishedAt}</time>
-          </p>
-        </div>
+        <div className="relative flex flex-col items-center justify-center py-12 text-center bg-opacity-25 min-h-[24rem] bg-dark px-4 sm:px-6 lg:px-8"></div>
       </div>
     </div>
   );
@@ -70,6 +144,10 @@ function Hero({ hero }: HeroProps): JSX.Element {
 
 export const query = graphql`
   query PostPageQuery($slug__current: String!) {
+    allSanityPost(sort: { fields: publishedAt, order: DESC }) {
+      ...SanityPostParts
+      totalCount
+    }
     sanityPost(slug: { current: { eq: $slug__current } }) {
       id
       _type
@@ -98,6 +176,9 @@ export const query = graphql`
         current
       }
       title
+      category {
+        name
+      }
     }
   }
 `;

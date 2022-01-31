@@ -47,6 +47,12 @@ export default {
       title: 'Body',
     },
     {
+      title: 'Category',
+      name: 'category',
+      type: 'reference',
+      to: [{ type: 'category' }],
+    },
+    {
       title: 'SEO / Share Settings',
       name: 'seo',
       type: 'seo',
